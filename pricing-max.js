@@ -65,6 +65,12 @@ if(document.getElementsByClassName('mint_linux_navbar')[0]){
 //get all select form by classname
         
 let pricingPlan = document.getElementsByClassName('pricing_plan');
+let tennerNameDiv = document.getElementsByClassName('tenner-time');
+let tennerPriceDiv = document.getElementsByClassName('tenner-price');
+let tennerSubTotalDiv = document.getElementsByClassName('tenner-sub-total');
+let tennerTotalDiv = document.getElementsByClassName('tenner-total');
+let discountPayDiv = document.getElementsByClassName('discount-pay');
+let discountAmount = 0;
 
 //loop throungt all select
 for (let plan = 0; plan < pricingPlan.length; plan++) {
@@ -83,24 +89,66 @@ for (let plan = 0; plan < pricingPlan.length; plan++) {
     //get selectd input data-id to change discount
     let selected = pricingPlan[plan].options[pricingPlan[plan].selectedIndex];
     let targetData = selected.getAttribute('data-id');
-    console.log(targetData);
+    let tannerName = "Not Defined !";
+    let monthlyAmount = selected.getAttribute("data-p") ?? "0";
+    let price = "0";
+    // console.log(tannerName);
     
     //change discount value while change on select element
-    if (targetData == '1') {
-        discount[plan].innerHTML = "0% Discount";
-    }
-    if (targetData == '2') {
+    if (targetData == '1' ){ 
+        tannerName = "For One Month";
+        price = monthlyAmount*1;
         discount[plan].innerHTML = "5% Discount";
+        discountAmount = (5*price)/100;
     }
-    if (targetData == '3') {
-        discount[plan].innerHTML = "10% Discount";
+    if(targetData == "2" ){
+        tannerName = "For Three Month";
+        price = monthlyAmount *3 ;
+        discount[plan].innerHTML = "5% Discount";
+        discountAmount = (5*price)/100;
+        
+    }
+    if (targetData == "3") {
+        tannerName = "For Half Year";
+        price = monthlyAmount *6;
+        discount[plan].innerHTML = "5% Discount";
+        discountAmount = (5*price)/100;
+        
     }
     if (targetData == '4') {
+        tannerName = "For One Year";
+        price = monthlyAmount *12;
+        discountAmount = (10*price)/100;
+        discount[plan].innerHTML = "10% Discount";
+    }
+    if (targetData == "5") {
+        tannerName = "For Two Year";
+        price =  monthlyAmount *24;
+        discountAmount = (10*price)/100;
+        discount[plan].innerHTML = "10% Discount";
+        
+    }
+    if (targetData == '6') {
+        tannerName = "For Three Years";
+        //        alert("three year plan is not available now!");
+        price = monthlyAmount*36;
+        discountAmount = (15*price)/100;
         discount[plan].innerHTML = "15% Discount";
     }
-    if (targetData == '5') {
-        discount[plan].innerHTML = "25% Discount";
+    if (targetData == '7') {
+        tannerName = "For Five Years";
+        //         alert("five years plan is not available now!")
+        price = monthlyAmount*60;
+        discountAmount = (20*price)/100;
+        discount[plan].innerHTML = "20% Discount";
     }
+    tennerSubTotalDiv[plan].innerHTML = "$"+price;
+    discountPayDiv[plan].innerHTML = "$"+discountAmount;
+    let  = total = (price-discountAmount);
+    tennerTotalDiv[plan].innerHTML = "$"+total;
+    tennerNameDiv[plan].innerHTML = tannerName.toUpperCase();
+    tennerPriceDiv[plan].innerHTML = "$"+monthlyAmount;
+
     
     //default discount end
     
@@ -114,250 +162,290 @@ for (let plan = 0; plan < pricingPlan.length; plan++) {
         //get selectd input data-id to change discount
         let selected = pricingPlan[plan].options[pricingPlan[plan].selectedIndex];
         let targetData = selected.getAttribute('data-id');
-        //console.log(targetData);
+        let tannerName = "Not Defined !";
+        let monthlyAmount = selected.getAttribute("data-p") ?? "0";
+        let price = "0";
+        // console.log(tannerName);
         
         //change discount value while change on select element
-        if (targetData == 1) {
-            discount[plan].innerHTML = "0% Discount";
-        }
-        if (targetData == 2) {
+        if (targetData == '1' ){ 
+            tannerName = "For One Month";
+            price = monthlyAmount*1;
             discount[plan].innerHTML = "5% Discount";
+            discountAmount = (5*price)/100;
         }
-        if (targetData == 3) {
+        if(targetData == "2" ){
+            tannerName = "For Three Month";
+            price = monthlyAmount *3 ;
+            discount[plan].innerHTML = "5% Discount";
+            discountAmount = (5*price)/100;
+            
+        }
+        if (targetData == "3") {
+            tannerName = "For Half Year";
+            price = monthlyAmount *6;
+            discount[plan].innerHTML = "5% Discount";
+            discountAmount = (5*price)/100;
+            
+        }
+        if (targetData == '4') {
+            tannerName = "For One Year";
+            price = monthlyAmount *12;
+            discountAmount = (10*price)/100;
             discount[plan].innerHTML = "10% Discount";
         }
-        if (targetData == 4) {
+        if (targetData == "5") {
+            tannerName = "For Two Year";
+            price =  monthlyAmount *24;
+            discountAmount = (10*price)/100;
+            discount[plan].innerHTML = "10% Discount";
+            
+        }
+        if (targetData == '6') {
+            tannerName = "For Three Years";
+            //        alert("three year plan is not available now!");
+            price = monthlyAmount*36;
+            discountAmount = (15*price)/100;
             discount[plan].innerHTML = "15% Discount";
         }
-        if (targetData == 5) {
-            discount[plan].innerHTML = "25% Discount";
+        if (targetData == '7') {
+            tannerName = "For Five Years";
+            //         alert("five years plan is not available now!")
+            price = monthlyAmount*60;
+            discountAmount = (20*price)/100;
+            discount[plan].innerHTML = "20% Discount";
         }
-    
+        tennerSubTotalDiv[plan].innerHTML = "$"+price;
+        discountPayDiv[plan].innerHTML = "$"+discountAmount;
+        let  = total = (price-discountAmount);
+        tennerTotalDiv[plan].innerHTML = "$"+total;
+        tennerNameDiv[plan].innerHTML = tannerName.toUpperCase();
+        tennerPriceDiv[plan].innerHTML = "$"+monthlyAmount;
         //set action button href
         pricingPlanCallToAction[plan].setAttribute('href', e.target.value);
         
     })
 
 }
-
 // pricing plan call to action button end 
 
 
 //for technical specification section
-let techAccordionButton = document.getElementsByClassName('tech-spac-accordion-button');
-let acHeader = document.getElementsByClassName("tech-spac-accordion-header");
-let acImage = document.getElementsByClassName("tech-spac-image");
-let aItem = document.getElementsByClassName("tech-spac-accordion-item");
 
-for (let ac = 0; ac < techAccordionButton.length; ac++) {
+// let techAccordionButton = document.getElementsByClassName('tech-spac-accordion-button');
+// let acHeader = document.getElementsByClassName("tech-spac-accordion-header");
+// let acImage = document.getElementsByClassName("tech-spac-image");
+// let aItem = document.getElementsByClassName("tech-spac-accordion-item");
+
+// for (let ac = 0; ac < techAccordionButton.length; ac++) {
     
     
-    techAccordionButton[ac].addEventListener("click", (e)=>{
+//     techAccordionButton[ac].addEventListener("click", (e)=>{
         
-        //default open image
-        acImage[0].style.display = 'block';
+//         //default open image
+//         acImage[0].style.display = 'block';
         
-        //default collapse open
-        aItem[0].style.maxHeight = "100%";
+//         //default collapse open
+//         aItem[0].style.maxHeight = "100%";
         
-        for (let i = 0; i < acImage.length; i++) {
-            //display block all image by default
-            acImage[i].style.display = 'none';
-            //button default style
-            techAccordionButton[i].style.color = "black";
-            techAccordionButton[i].style.fontWeight = 'normal';
+//         for (let i = 0; i < acImage.length; i++) {
+//             //display block all image by default
+//             acImage[i].style.display = 'none';
+//             //button default style
+//             techAccordionButton[i].style.color = "black";
+//             techAccordionButton[i].style.fontWeight = 'normal';
             
-            //accodtion item style default
-            aItem[i].style.maxHeight = '58px';
-        }
+//             //accodtion item style default
+//             aItem[i].style.maxHeight = '58px';
+//         }
 
-        //accordion button style when click on accondion button
-        e.target.style.color = '#eca940';
-        e.target.style.transition = "all linear .1s";
-        e.target.style.fontWeight = '600';
+//         //accordion button style when click on accondion button
+//         e.target.style.color = '#eca940';
+//         e.target.style.transition = "all linear .1s";
+//         e.target.style.fontWeight = '600';
 
-        //console.log(e.target.dataset.image);
-        //accordion height
-        aItem[ac].style.maxHeight = "100%";
-        aItem[ac].style.transition = "all linear .5s";
+//         //console.log(e.target.dataset.image);
+//         //accordion height
+//         aItem[ac].style.maxHeight = "100%";
+//         aItem[ac].style.transition = "all linear .5s";
         
-        //show specific image
-        document.getElementById(e.target.dataset.image).style.display = 'block';
+//         //show specific image
+//         document.getElementById(e.target.dataset.image).style.display = 'block';
 
-    })
+//     })
     
-}
+// }
 
 
 
-// domain registration pricing domain search begain
-// search 
+// // domain registration pricing domain search begain
+// // search 
 
 
 
-// dynamic element create for mobile version
-let card = document.querySelectorAll('.mint_dp_pricing_card');
-let reg = document.querySelectorAll(".price-register");
-let renew = document.querySelectorAll(".price-renew");
-let tranf = document.querySelectorAll(".price-transfer");
-let dp_limit = 0;
-let dp_ofset = 0;
+// // dynamic element create for mobile version
+// let card = document.querySelectorAll('.mint_dp_pricing_card');
+// let reg = document.querySelectorAll(".price-register");
+// let renew = document.querySelectorAll(".price-renew");
+// let tranf = document.querySelectorAll(".price-transfer");
+// let dp_limit = 0;
+// let dp_ofset = 0;
 
 
-for (let c = 0; c < card.length; c++) {
-    // let reg = document.querySelectorAll(".price-register")[0];
+// for (let c = 0; c < card.length; c++) {
+//     // let reg = document.querySelectorAll(".price-register")[0];
 
-    let rg = document.createElement("div");
-    rg.innerHTML = "Register";
-    rg.classList.add("pr-option");
+//     let rg = document.createElement("div");
+//     rg.innerHTML = "Register";
+//     rg.classList.add("pr-option");
 
-    let rew = document.createElement("div");
-    rew.innerHTML = "Renew";
-    rew.classList.add("pr-option");
+//     let rew = document.createElement("div");
+//     rew.innerHTML = "Renew";
+//     rew.classList.add("pr-option");
 
-    let trf = document.createElement("div");
-    trf.innerHTML = "Transfer";
-    trf.classList.add("pr-option");
+//     let trf = document.createElement("div");
+//     trf.innerHTML = "Transfer";
+//     trf.classList.add("pr-option");
 
-    reg[c].prepend(rg);
-    renew[c].prepend(rew);
-    tranf[c].prepend(trf);
-}
-
-
-//domain search
-document.getElementById('domain_search').addEventListener("keyup", (e) => {
-    let card = document.getElementsByClassName('mint_dp_pricing_card');
-
-    //get input value
-    let Ivalue = e.target.value;
-    if (Ivalue != '') {
-        document.getElementsByClassName('mint_dp_more_btn')[0].style.display = 'none';
-    } else {
-        document.getElementsByClassName('mint_dp_more_btn')[0].style.display = 'block';
-    }
-    // console.log(card[0].dataset.name.includes('m'));
-
-    //console.log("not empty");
-    // console.log(get);
-    // console.log(card[i].dataset.name);
-
-    //loop throungt all card
-    for (let i = 0; i < card.length; i++) {
-        card[i].style.display = "none";
-
-        //if anything  match
-        if (card[i].dataset.name.includes(Ivalue)) {
-            card[i].style.display = "block";
-            // console.log(i);
-        }
-    }
+//     reg[c].prepend(rg);
+//     renew[c].prepend(rew);
+//     tranf[c].prepend(trf);
+// }
 
 
-})
+// //domain search
+// document.getElementById('domain_search').addEventListener("keyup", (e) => {
+//     let card = document.getElementsByClassName('mint_dp_pricing_card');
+
+//     //get input value
+//     let Ivalue = e.target.value;
+//     if (Ivalue != '') {
+//         document.getElementsByClassName('mint_dp_more_btn')[0].style.display = 'none';
+//     } else {
+//         document.getElementsByClassName('mint_dp_more_btn')[0].style.display = 'block';
+//     }
+//     // console.log(card[0].dataset.name.includes('m'));
+
+//     //console.log("not empty");
+//     // console.log(get);
+//     // console.log(card[i].dataset.name);
+
+//     //loop throungt all card
+//     for (let i = 0; i < card.length; i++) {
+//         card[i].style.display = "none";
+
+//         //if anything  match
+//         if (card[i].dataset.name.includes(Ivalue)) {
+//             card[i].style.display = "block";
+//             // console.log(i);
+//         }
+//     }
 
 
-//pagination
-function dp_paginate(limit) {
-
-    //get all pricing card.
-    let card = document.getElementsByClassName('mint_dp_pricing_card');
-    dp_limit += limit;
-
-    //if input over the card lenght this set card lenght to limit variable.
-    if (dp_limit > card.length) {
-        dp_limit = card.length
-        document.getElementsByClassName('mint_dp_more_btn')[0].style.display = 'none';
-        console.log("its ok now");
-
-    }
-
-    //first display none all card
-    for (let pg = 0; pg < card.length; pg++) {
-        card[pg].style.display = "none";
-    }
-
-    //then,display block targeted limit card
-    for (let pg = dp_ofset; pg < dp_limit; pg++) {
-        card[pg].style.display = 'block';
-
-    }
-    console.log(dp_limit);
+// })
 
 
-}
-//first time paginate only 10 card
-// dp_paginate(8);
+// //pagination
+// function dp_paginate(limit) {
 
-// domain registration pricing end
+//     //get all pricing card.
+//     let card = document.getElementsByClassName('mint_dp_pricing_card');
+//     dp_limit += limit;
+
+//     //if input over the card lenght this set card lenght to limit variable.
+//     if (dp_limit > card.length) {
+//         dp_limit = card.length
+//         document.getElementsByClassName('mint_dp_more_btn')[0].style.display = 'none';
+//         console.log("its ok now");
+
+//     }
+
+//     //first display none all card
+//     for (let pg = 0; pg < card.length; pg++) {
+//         card[pg].style.display = "none";
+//     }
+
+//     //then,display block targeted limit card
+//     for (let pg = dp_ofset; pg < dp_limit; pg++) {
+//         card[pg].style.display = 'block';
+
+//     }
+//     console.log(dp_limit);
 
 
-// ssl certificate start
-        // get all class name mint-ssl-navbar-nav 
-    let mint_ssl_nav = document.getElementsByClassName("mint-ssl-navbar-nav");
-    //get all pricing card by class name 
-    let mint_ssl_pricing_card = document.getElementsByClassName('mint-ssl-pricing-card');
+// }
+// //first time paginate only 10 card
+// // dp_paginate(8);
+
+// // domain registration pricing end
+
+
+// // ssl certificate start
+//         // get all class name mint-ssl-navbar-nav 
+//     let mint_ssl_nav = document.getElementsByClassName("mint-ssl-navbar-nav");
+//     //get all pricing card by class name 
+//     let mint_ssl_pricing_card = document.getElementsByClassName('mint-ssl-pricing-card');
    
-    // loop throught all classes 
-    for (let a = 0; a < mint_ssl_nav.length; a++) {
+//     // loop throught all classes 
+//     for (let a = 0; a < mint_ssl_nav.length; a++) {
         
-    mint_ssl_pricing_card[a].style.display = "none";
+//     mint_ssl_pricing_card[a].style.display = "none";
     
-    //display block 5 years pricing card by defautl
-    mint_ssl_pricing_card[2].style.display = "block";
+//     //display block 5 years pricing card by defautl
+//     mint_ssl_pricing_card[2].style.display = "block";
 
-    //add click event listerner. when click any navbar nav
-    mint_ssl_nav[a].addEventListener("click", (e) => {
-        console.log(e.target.dataset.billingcycle);
+//     //add click event listerner. when click any navbar nav
+//     mint_ssl_nav[a].addEventListener("click", (e) => {
+//         console.log(e.target.dataset.billingcycle);
         
-        //get billingCycle name from clicked nav
-        let billingCycle = e.target.dataset.billingcycle;
-        //console.log(billingCycle);
-        //display none all
-        for (let a = 0; a < mint_ssl_pricing_card.length; a++) {
-            mint_ssl_pricing_card[a].style.display = "none";
+//         //get billingCycle name from clicked nav
+//         let billingCycle = e.target.dataset.billingcycle;
+//         //console.log(billingCycle);
+//         //display none all
+//         for (let a = 0; a < mint_ssl_pricing_card.length; a++) {
+//             mint_ssl_pricing_card[a].style.display = "none";
 
-            //remone active class nav from all navbar nav
-            mint_ssl_nav[a].classList.remove('mint-ssl-active-nav');
-        }
+//             //remone active class nav from all navbar nav
+//             mint_ssl_nav[a].classList.remove('mint-ssl-active-nav');
+//         }
 
-        //active navbar class
-        e.target.classList.add("mint-ssl-active-nav");
+//         //active navbar class
+//         e.target.classList.add("mint-ssl-active-nav");
 
-        //display block the targeted pricing card
-        mint_ssl_pricing_card[billingCycle].style.display = 'block';
+//         //display block the targeted pricing card
+//         mint_ssl_pricing_card[billingCycle].style.display = 'block';
 
-    })
-}
+//     })
+// }
 
-// small navbar 
-function openNavSm(e) {
-    let nav_sm = document.getElementById('mint-ssl-nav-sm');
-    // nav_sm.style.maxHeight = '45px';
+// // small navbar 
+// function openNavSm(e) {
+//     let nav_sm = document.getElementById('mint-ssl-nav-sm');
+//     // nav_sm.style.maxHeight = '45px';
 
-    if (nav_sm.style.maxHeight == "45px" || nav_sm.style.maxHeight == '') {
-        nav_sm.style.maxHeight = "100%";
-        nav_sm.style.transition = "all linear .3s";
-    } else {
-        nav_sm.style.maxHeight = "45px";
-        nav_sm.style.transition = "all linear .3s";
-    }
+//     if (nav_sm.style.maxHeight == "45px" || nav_sm.style.maxHeight == '') {
+//         nav_sm.style.maxHeight = "100%";
+//         nav_sm.style.transition = "all linear .3s";
+//     } else {
+//         nav_sm.style.maxHeight = "45px";
+//         nav_sm.style.transition = "all linear .3s";
+//     }
 
-}
+// }
 
-function navSmPricingCard(billingcycle) {
-    let nav_sm_pricing_card = document.getElementsByClassName('nav_sm');
+// function navSmPricingCard(billingcycle) {
+//     let nav_sm_pricing_card = document.getElementsByClassName('nav_sm');
 
-    let mint_ssl_pricing_card = document.getElementsByClassName('mint-ssl-pricing-card');
-    for (let sm = 0; sm < mint_ssl_pricing_card.length; sm++) {
-        //display none all pricing card
-        mint_ssl_pricing_card[sm].style.display = 'none';
+//     let mint_ssl_pricing_card = document.getElementsByClassName('mint-ssl-pricing-card');
+//     for (let sm = 0; sm < mint_ssl_pricing_card.length; sm++) {
+//         //display none all pricing card
+//         mint_ssl_pricing_card[sm].style.display = 'none';
         
-        //remove active class from all navbar nav
-        nav_sm_pricing_card
-    }
-    //console.log(billingcycle);
-    mint_ssl_pricing_card[billingcycle].style.display = "block";
-    // nav_sm_pricing_card[billingcycle].style.display = 'block';
-}
+//         //remove active class from all navbar nav
+//         nav_sm_pricing_card
+//     }
+//     //console.log(billingcycle);
+//     mint_ssl_pricing_card[billingcycle].style.display = "block";
+//     // nav_sm_pricing_card[billingcycle].style.display = 'block';
+// }
 // ssl certificate end

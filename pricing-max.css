@@ -1,6 +1,12 @@
 
 @import url('https://fonts.googleapis.com/css2?family=Lexend+Deca:wght@300;600;700;900&display=swap');
-
+body{
+    /* display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+    width: 100%; */
+}
 :root {
     --mint-brand: #53B14A;
     --mint-secondary: #61CE70;
@@ -74,14 +80,52 @@
 
 #mint_linux .card {
     border-radius: 7px;
-    height: 620px;
+    height: auto;
+    max-width:3200px!important;
     border: 1px solid #DDDDDD;
     position: relative;
     margin: 20px 0px;
     background-color: white;
-    box-shadow:0px 0px 8px var(--mint-dark-gray);
+    box-shadow:0px 0px 2px var(--mint-dark-gray);
+    transition: all linear .3s;
+    /* position: relative; */
+    /* overflow: hidden; */
+    overflow: hidden;
 }
-
+#card_bd .card::after {
+    content: "BD";
+    position: absolute;
+    top: 5px;
+    left: -30px;
+    width: 90px;
+    height: 20px;
+    background-color: var(--mint-brand);
+    font-size: 13px;
+    text-align: center;
+    font-weight: 600;
+    color: var(--mint-light);
+    transform: rotate(-45deg);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+#card_global .card::after {
+    content: "US";
+    position: absolute;
+    top: 5px;
+    left: -30px;
+    width: 90px;
+    height: 20px;
+    background-color: var(--mint-brand);
+    font-size: 13px;
+    text-align: center;
+    font-weight: 600;
+    color: var(--mint-light);
+    transform: rotate(-45deg);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
 #mint_linux .card .recomend {
     content: "Recoment";
     position: absolute;
@@ -96,14 +140,18 @@
     border-radius: 25px;
     background-color: rgb(255, 174, 0);
     color: white;
+    display: none;;
 }
 
 #mint_linux .card:hover {
     border: 1px solid #61CE70;
+    box-shadow: 0px 10px 15px var(--mint-dark-gray);
+    transition: all linear .3s;
 }
 
 #mint_linux .card .card-body {
     padding: 12px;
+    position: relative;
 }
 
 #mint_linux .mint_linux_card_title {
@@ -120,9 +168,9 @@
 
 #mint_linux .mint_linux_card_select_title {
     font-family:"Lexend Deca",sans-serif;
-    font-size: 14px;
+    font-size: 13px;
     padding: 5px;
-    font-weight: 400;
+    font-weight: 500;
     text-transform: uppercase;
     margin-bottom: 7px;
 }
@@ -178,6 +226,7 @@
     text-decoration: none;
 }
 
+
 #mint_linux .mint_linux_card_offer ul li {
     font-family: 'Lexend Deca', sans-serif;
     font-size: 13px;
@@ -225,9 +274,19 @@
 
 #mint_linux .mint_linux_card_offer {
     margin-top: 20px;
-    margin-left: 7px;
-    width:230px;
+    /* margin-left: 7px; */
+    width:100%;
+    height: 40px;
+    /* border: 1px solid var(--mint-secondary); */
+    padding: 5px;
+    overflow: hidden;
+    position:relative;
 }
+#mint_linux .mint_linux_card_offer:hover{
+    height: 100%;
+    transition: all linear .3s;
+}
+
 
 
 @media (max-width:768px) {
@@ -249,6 +308,9 @@
     padding: 10px 0px;
 }
 
+.dicsount-table th{
+    font-size: 11px!important;
+}
 .discount {
     margin-top:-5px;
     margin: 10px auto;
@@ -256,7 +318,7 @@
     text-align: center;
     font-weight: 600;
     font-family: "Lexend Deca", sans-serif;
-    color: #87872d;
+    color: #87872d!important;
     font-size: 16px;
 }
 .mint_linux_card_content {
